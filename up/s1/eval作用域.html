@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div>
+			当使用eval方法解析js代码字符串时，如果存在变量声明，那么eval(..)会对所处的词法作用域进行修改，也就是在eval方法所在的作用域（常见的是函数作用域）声明局部变量，但是如果处于严格模式，则不会这样。
+			如果通过window.eval或者将eval方法赋值给其他变量再去调用则会将 变量声明为全局变量。
+		</div>
+		<script type="text/javascript">
+			function foo(str) {
+//				"use strict";
+				
+				eval(str);
+				console.log(num); // ReferenceError: a is not defined
+			}
+			foo("var num = 2");
+			var tpl = `
+				var c = 10010;
+				console.log(a,b,c);
+				return a+b+c;
+			`
+			var bar = (function(){
+				var obj = {age:11};
+				return new Function('a','b',tpl)
+			})();
+		</script>
+	</body>
+
+</html>

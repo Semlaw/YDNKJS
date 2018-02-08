@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function foo(){
+				console.log(this.a);
+			}
+			var a = 2;
+			(function(){
+				'use strict';
+				foo();
+			})();
+		</script>
+	</body>
+</html>

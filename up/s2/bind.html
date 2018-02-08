@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function foo(){
+				console.log(this);
+				console.log(arguments)
+				console.log(arguments.callee.caller);
+				console.log(arguments.callee.temp);
+			}
+			var obj = {
+				age:19
+			}
+			function bind(fn,obj){
+				return function(){
+					return fn.apply(obj,arguments);
+				}
+			}
+			var f1 = foo.bind(obj,['a','b']);
+			var f2 = bind(foo,obj);
+		</script>
+	</body>
+</html>

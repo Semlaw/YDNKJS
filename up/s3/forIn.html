@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = {
+				name:12,
+				'-1':-1,
+				age:2,
+				1:1,
+				4:4,
+				0:0
+			}
+			//遍历对象的属性顺序：先是根据数字顺序遍历数字属性，然后根据书写顺序
+			for(k in obj){
+				if(k=='1') break;
+				console.log(k)
+			}
+		</script>
+	</body>
+</html>

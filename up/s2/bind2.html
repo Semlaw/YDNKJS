@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			Function.prototype.bind2 = function(oThis) {
+				if(typeof this !== 'function') {
+					throw new Error('to be bound is not a function');
+				}
+				var aArgs = [].slice.call(arguments, 1),
+					fToBind = this,
+					fNOP = function() {},
+					fBound = function() {
+						//如果使用new关键字调用函数,并且oThis非空，才使用（“this”）硬绑定；
+						return fToBind.apply((this instanceof fNOP && oThis ? this : oThis),
+							aArgs.concat(Array.prototype.slice.call(arguments)))
+					};
+
+				fNOP.prototype = this.prototype;
+
+				fBound.prototype = new fNOP();
+				return fBound;
+
+			}
+			function bind(fn,obj){
+				return function(){
+					return fn.apply(obj,arguments);
+				}
+			}
+			function foo(age){
+				this.age = age || 20;
+			}
+			foo.bar = 'this is a Function property';
+			foo.prototype.say = function(){
+				console.log('Hello');
+			}
+			var obj = {name:'all exist'}
+			var f1 = foo.bind(obj);
+			var f2 = bind(foo,obj);
+			var f3 = foo.bind2(obj);
+		</script>
+	</body>
+
+</html>

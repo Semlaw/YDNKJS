@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var myObject = {
+				a: 2,
+				b: 4
+			}
+			//自己实现迭代器时，应该让迭代器属性不可枚举
+			Object.defineProperty(myObject, Symbol.iterator, {
+				"value": function(){
+					var o = this,
+					ks = Object.keys(o),
+					idx = 0
+					return {
+						next:function(){
+							return {
+								value:o[ks[idx++]],
+							done:idx>ks.length
+							}
+						}
+					}
+				},
+				"writable": false,
+				"enumerable": false,
+				"configurable": true
+			});
+			for(let k of myObject){
+				console.log(k)
+			}
+		</script>
+	</body>
+
+</html>

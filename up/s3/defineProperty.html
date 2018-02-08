@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = {
+				
+			}
+			Object.defineProperty(obj,'age',{
+				writable:true
+			});
+			Object.defineProperty(obj,'age',{
+				writable:false
+			});
+			Object.defineProperty(obj,'klass',{
+				get:function(){
+					return 10010;
+				}
+			});
+		</script>
+	</body>
+</html>

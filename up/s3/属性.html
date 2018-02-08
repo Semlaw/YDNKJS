@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<pre>
+			禁止扩展
+		</pre>
+		<script type="text/javascript">
+			var myObject = {
+				a:2
+			}
+			//禁止一个对象添加新属性并且保留已有属性
+			Object.preventExtensions(myObject);
+			myObject.b = 2;//在非严格模式下创建属性会静默失败
+			myObject.b //undefined 
+			
+			//密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有的属性（虽然可以修改属性的值）
+			Object.seal(myObject);
+			myObject.a = 100;
+			//会在一个现有对象上调用Object.seal并把所有“数据访问”属性标记为writablb:false,这样就无法修改他们的值
+			Object.freeze(myObject)
+			myObject.a = 999;
+		</script>
+	</body>
+</html>

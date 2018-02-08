@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function foo(obj){
+				with(obj){
+					var num = 10010;
+					age = 200;
+				}
+				console.log(num);
+				console.log(age);
+			}
+			foo({name:'obj'});
+		</script>
+	</body>
+</html>
